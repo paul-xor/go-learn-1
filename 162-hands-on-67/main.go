@@ -16,6 +16,7 @@ type MockDatastore struct {
 	Users map[int]User
 }
 
+// GetUser gets a user by their ID from the mock datastore.
 func (md MockDatastore) GetUser(id int) (User, error) {
 	user, ok := md.Users[id]
 	if !ok {
@@ -24,6 +25,7 @@ func (md MockDatastore) GetUser(id int) (User, error) {
 	return user, nil
 }
 
+// SaveUser saves a new user in the mock datastore.
 func (md MockDatastore) SaveUser(u User) error {
 	_, ok := md.Users[u.ID]
 	if ok {
@@ -34,30 +36,22 @@ func (md MockDatastore) SaveUser(u User) error {
 }
 
 // Datastore defines an interface for storing retrievable data.
-// Any TYPE that implements this interface (has these two methods) is also of TYPE `Datastore`.
-// This means any value of TYPE `MockDatastore` is also of TYPE `Datastore`
-// This means we could have a value of TYPE `*sql.DB` and it can also be of TYPE `Datastore`
-// This means we can write functions to take TYPE `Datastore` and use either of these:
-// -- `MockDatastore`
-// -- `*sql.DB`
-// https://pkg.go.dev/database/sql#Open
 type Datastore interface {
 	GetUser(id int) (User, error)
 	SaveUser(u User) error
 }
 
 // Service represents a service that stores retrievable data.
-// We will attach methods to `Service` so that we can use either of these:
-// -- `MockDatastore`
-// -- `*sql.DB`
 type Service struct {
 	ds Datastore
 }
 
+// GetUser retrieves a user by their ID from the datastore.
 func (s Service) GetUser(id int) (User, error) {
 	return s.ds.GetUser(id)
 }
 
+// SaveUser saves a new user in the datastore.
 func (s Service) SaveUser(u User) error {
 	return s.ds.SaveUser(u)
 }
