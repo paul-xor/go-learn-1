@@ -5,7 +5,7 @@ import (
 	"fmt"
 )
 
-type Car struct {
+type car struct {
 	Model  string `json:"Model"`
 	Make   string `json:"Make"`
 	Type   string `json:"Type"`
@@ -18,7 +18,7 @@ func main() {
 	bs := []byte(s)
 
 	fmt.Println(bs)
-	var vehicles []Car
+	var vehicles []car
 	err := json.Unmarshal(bs, &vehicles)
 	if err != nil {
 		fmt.Println(err)

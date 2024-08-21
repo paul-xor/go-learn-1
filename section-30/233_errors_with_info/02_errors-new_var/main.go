@@ -6,6 +6,7 @@ import (
 	"log"
 )
 
+// ErrNorgateMath is an error that represents an invalid operation in Norgate's math (e.g., square root of a negative number).
 var ErrNorgateMath = errors.New("norgate math: square root of negative number")
 
 func main() {
