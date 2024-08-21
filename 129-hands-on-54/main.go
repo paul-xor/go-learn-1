@@ -3,37 +3,37 @@ package main
 import "fmt"
 
 type person struct {
-	first_name string
-	last_name  string
-	fav_ice    []string
+	firstName string
+	lastName  string
+	favIce    []string
 }
 
 func main() {
 
 	person1 := person{
-		first_name: "James",
-		last_name:  "Bond",
-		fav_ice:    []string{"chocolate", "creambrule"},
+		firstName: "James",
+		lastName:  "Bond",
+		favIce:    []string{"chocolate", "creambrule"},
 	}
 
 	person2 := person{
-		first_name: "Jenny",
-		last_name:  "Moneypenny",
-		fav_ice:    []string{"vanilla", "strawberry", "mint chocolate chip"},
+		firstName: "Jenny",
+		lastName:  "Moneypenny",
+		favIce:    []string{"vanilla", "strawberry", "mint chocolate chip"},
 	}
 
 	m := map[string]person{
-		person1.last_name: person1,
-		person2.last_name: person2,
+		person1.lastName: person1,
+		person2.lastName: person2,
 	}
 
-	fmt.Printf("-> First person: %v\t %v\n", m["Bond"].first_name, m["Bond"].last_name)
-	for i, v := range m["Bond"].fav_ice {
+	fmt.Printf("-> First person: %v\t %v\n", m["Bond"].firstName, m["Bond"].lastName)
+	for i, v := range m["Bond"].favIce {
 		fmt.Println(i, v)
 	}
 
-	fmt.Printf("-> Second preson: %v\t %v\n", m["Moneypenny"].first_name, m["Moneypenny"].last_name)
-	for i, v := range m["Moneypenny"].fav_ice {
+	fmt.Printf("-> Second preson: %v\t %v\n", m["Moneypenny"].firstName, m["Moneypenny"].lastName)
+	for i, v := range m["Moneypenny"].favIce {
 		fmt.Println(i, v)
 	}
 
@@ -41,8 +41,8 @@ func main() {
 	fmt.Println("---------")
 	for _, v := range m {
 		fmt.Println(v)
-		for _, v2 := range v.fav_ice {
-			fmt.Printf("name: %v\t %v\t %v\n", v.first_name, v.last_name, v2)
+		for _, v2 := range v.favIce {
+			fmt.Printf("name: %v\t %v\t %v\n", v.firstName, v.lastName, v2)
 		}
 	}
 
